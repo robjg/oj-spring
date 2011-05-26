@@ -1,0 +1,19 @@
+<oddjob id="this" xmlns:spring='http://rgordon.co.uk/spring'>
+	<job>
+		<sequential>
+			<jobs>
+				<spring:beans id='spring'>
+					<files>
+						<list>
+							<values>
+								<value value='file:${this.dir}/spring4.xml'/>
+							</values>
+						</list>
+					</files>
+				</spring:beans>
+				<run job='${spring/runnable}' />
+				<echo id='echo' text='${spring/runnable.ran}' />
+			</jobs>
+		</sequential>
+	</job>
+</oddjob>

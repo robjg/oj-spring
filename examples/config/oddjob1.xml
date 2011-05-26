@@ -1,0 +1,18 @@
+<oddjob xmlns:spring='http://rgordon.co.uk/spring'>
+	<job>
+		<sequential>
+			<jobs>
+				<spring:beans id='spring'>
+					<resources>
+						<list>
+							<values>
+								<value value='org/oddjob/spring/spring1.xml' />
+							</values>
+						</list>
+					</resources>
+				</spring:beans>
+				<echo id='echo' text='${spring/apple.colour}' />
+			</jobs>
+		</sequential>
+	</job>
+</oddjob>
