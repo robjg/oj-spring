@@ -13,7 +13,7 @@
 						</list>
 					</resources>
 				</spring:beans>
-				<echo id='echo' text='${spring/snack.apple.colour}' />
+				<echo id='echo'>${spring/snack.apple.colour}</echo>
 			</jobs>
 		</sequential>
 	</job>
