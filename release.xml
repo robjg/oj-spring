@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<oddjob id="this">
+    <job>
+        <sequential>
+            <jobs>
+                <exec dir="${this.dir}" name="Maven Clean"><![CDATA[cmd /c mvn clean]]></exec>
+                <exec dir="${this.dir}" name="Maven Install"><![CDATA[cmd /c mvn install]]></exec>
+                <properties id="props">
+                    <values>
+                        <value key="project.name" value="oj-spring"/>
+                        <value key="project.version" value="1.1.5-SNAPSHOT"/>
+                        <value key="project.full.name" value="${project.name}-${project.version}"/>
+                        <file file="${this.dir}/target/${project.full.name}-bin.zip" key="dist.bin.zip.file"/>
+                        <file file="${this.dir}/target/${project.full.name}-src.zip" key="dist.src.zip.file"/>
+                    </values>
+                </properties>
+                <folder>
+                    <jobs>
+                        <sequential name="Send to Sourceforge">
+                            <jobs>
+                                <ant id="send-bin" name="Send Bin Zip">
+                                    <tasks>
+                                        <xml>
+                                            <tasks>
+                                                <scp file="${dist.bin.zip.file}" sftp="true" todir="${sourceforge.user},ojob:${sourceforge.password}@${sourceforge.server}:/home/pfs/project/o/oj/ojob/oj-spring/snapshots" trust="true"/>
+                                            </tasks>
+                                        </xml>
+                                    </tasks>
+                                    <classLoader>
+                                        <url-class-loader>
+                                            <files>
+                                                <files files="${ant.optionals.dir}/*.jar"/>
+                                            </files>
+                                            <parent>
+                                                <value value="${send-bin.class.classLoader}"/>
+                                            </parent>
+                                        </url-class-loader>
+                                    </classLoader>
+                                </ant>
+                                <ant id="send-src" name="Send Src Zip">
+                                    <tasks>
+                                        <xml>
+                                            <tasks>
+                                                <scp file="${dist.src.zip.file}" sftp="true" todir="${sourceforge.user},ojob:${sourceforge.password}@${sourceforge.server}:/home/pfs/project/o/oj/ojob/oj-spring/snapshots" trust="true"/>
+                                            </tasks>
+                                        </xml>
+                                    </tasks>
+                                    <classLoader>
+                                        <url-class-loader>
+                                            <files>
+                                                <files files="${ant.optionals.dir}/*.jar"/>
+                                            </files>
+                                            <parent>
+                                                <value value="${send-src.class.classLoader}"/>
+                                            </parent>
+                                        </url-class-loader>
+                                    </classLoader>
+                                </ant>
+                                <ant id="send-readme" name="Send Readme">
+                                    <tasks>
+                                        <xml>
+                                            <tasks>
+                                                <scp file="${this.dir}/README.txt" sftp="true" todir="${sourceforge.user},ojob:${sourceforge.password}@${sourceforge.server}:/home/pfs/project/t/tr/tracar/snapshots" trust="true"/>
+                                            </tasks>
+                                        </xml>
+                                    </tasks>
+                                    <classLoader>
+                                        <url-class-loader>
+                                            <files>
+                                                <files files="${ant.optionals.dir}/*.jar"/>
+                                            </files>
+                                            <parent>
+                                                <value value="${send-readme.class.classLoader}"/>
+                                            </parent>
+                                        </url-class-loader>
+                                    </classLoader>
+                                </ant>
+                            </jobs>
+                        </sequential>
+                    </jobs>
+                </folder>
+            </jobs>
+        </sequential>
+    </job>
+</oddjob>
