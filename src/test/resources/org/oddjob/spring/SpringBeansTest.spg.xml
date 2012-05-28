@@ -1,0 +1,15 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+  <bean id="apple" class="org.oddjob.spring.Apple">
+    <property name="colour" value="${favourite.apple.colour}" />
+  </bean>
+
+  <bean id="eater" class="org.oddjob.spring.SnackEater">
+    <property name="apple" ref="apple" />
+    <property name="biscuit" ref="biscuit" />
+  </bean>
+
+</beans>

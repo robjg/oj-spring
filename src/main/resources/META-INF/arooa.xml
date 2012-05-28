@@ -1,0 +1,11 @@
+<arooa:descriptor xmlns:arooa="http://rgordon.co.uk/oddjob/arooa"
+  prefix="spring" namespace="oddjob:spring">
+  <components>
+    <arooa:bean-def element="beans"
+      className="org.oddjob.spring.SpringBeans"/>
+    <arooa:bean-def element="job"
+      className="org.oddjob.spring.SpringJob"/>
+    <arooa:bean-def element="service"
+      className="org.oddjob.spring.SpringService"/>
+  </components>
+</arooa:descriptor>

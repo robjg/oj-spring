@@ -60,7 +60,7 @@
                                     <tasks>
                                         <xml>
                                             <tasks>
-                                                <scp file="${this.dir}/README.txt" sftp="true" todir="${sourceforge.user},ojob:${sourceforge.password}@${sourceforge.server}:/home/pfs/project/t/tr/tracar/snapshots" trust="true"/>
+                                                <scp file="${this.dir}/README.txt" sftp="true" todir="${sourceforge.user},ojob:${sourceforge.password}@${sourceforge.server}:/home/pfs/project/o/oj/ojob/oj-spring/snapshots" trust="true"/>
                                             </tasks>
                                         </xml>
                                     </tasks>

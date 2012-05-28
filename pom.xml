@@ -3,17 +3,52 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>uk.co.rgordon</groupId>
   <artifactId>oj-spring</artifactId>
-  <version>1.1.5-SNAPSHOT</version>
+  <version>1.2.0-SNAPSHOT</version>
   <packaging>jar</packaging>
+  <description></description>
   <name>Oddjob Spring Support</name>
   <url>http://rgordon.co.uk/oddjob</url>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <scm>
+        <url>https://github.com/robjg/oj-spring</url>
+        <connection>scm:git:git://github.com/robjg/oj-spring.git</connection>
+    </scm>
+      <developers>
+    <developer>
+      <id>rob</id>
+      <name>Rob</name>
+      <email>contact@rgordon.co.uk</email>
+    </developer>
+  </developers>
   <properties>
     <maven.test.failure.ignore>false</maven.test.failure.ignore>
     <lib.dir>${project.build.directory}/lib</lib.dir>
     <spring.framework.version>3.1.1.RELEASE</spring.framework.version>
     <log4j.version>1.2.16</log4j.version>
+    <hsql.version>2.2.8</hsql.version>
+    <mysql.version>5.1.18</mysql.version>
   </properties>
+    <distributionManagement>
+  <snapshotRepository>
+    <id>sonatype-nexus-snapshots</id>
+    <name>Sonatype Nexus Snapshots</name>
+    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+  </snapshotRepository>
+  </distributionManagement>
+  
   <dependencies>
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>${hsql.version}</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -35,13 +70,19 @@
     <dependency>
       <groupId>uk.co.rgordon</groupId>
       <artifactId>oddjob</artifactId>
-      <version>1.1.0</version>
+      <version>1.2.0-SNAPSHOT</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>${log4j.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.inject</groupId>
+      <artifactId>javax.inject</artifactId>
+      <version>1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -54,35 +95,9 @@
       <artifactId>spring-orm</artifactId>
       <version>${spring.framework.version}</version>
     </dependency>
-    <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
-      <version>1</version>
-    </dependency>
-
   </dependencies>
   <build>
-    <sourceDirectory>${project.basedir}/src/java</sourceDirectory>
-    <testSourceDirectory>${project.basedir}/test/java</testSourceDirectory>
     <plugins>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>build-helper-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>add-test-source</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>add-test-source</goal>
-            </goals>
-            <configuration>
-              <sources>
-                <source>${project.basedir}/examples/java</source>
-              </sources>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
@@ -101,6 +116,36 @@
           <includeScope>runtime</includeScope>
         </configuration>
       </plugin>
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>2.8.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>javadoc</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
+      </plugin>      
+      <plugin>
+        <groupId>com.agilejava.docbkx</groupId>
+        <artifactId>docbkx-maven-plugin</artifactId>
+        <version>2.0.14</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>generate-html</goal>
+              <goal>generate-pdf</goal>
+            </goals>
+            <phase>package</phase>
+          </execution>
+        </executions>
+        <configuration>
+          <includes>oj-spring.xml</includes>
+        </configuration>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -116,8 +161,8 @@
         <configuration>
           <!-- Specifies the configuration file of the assembly plugin -->
           <descriptors>
-            <descriptor>src/assembly/src-assembly.xml</descriptor>
-            <descriptor>src/assembly/bin-assembly.xml</descriptor>
+            <descriptor>src/main/assembly/src-assembly.xml</descriptor>
+            <descriptor>src/main/assembly/bin-assembly.xml</descriptor>
           </descriptors>
         </configuration>
       </plugin>

@@ -1,0 +1,19 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+  <bean id="results"
+    class="org.oddjob.spring.OddjobPropertyConfigurerTest$ResultBean">
+    <property name="values">
+      <list>
+        <value>My $${favourite.fruit} is ${favourite.fruit}.</value>
+        <value>My $${$${favourite.snack}} is also $${${favourite.snack}} which is ${${favourite.snack}}.</value>
+        <value>There's no ${favourite.pizza}.</value>
+        <value>$${favourite.pizza} still has two $$s.</value>
+        <value>But $${favourite.pizza} with ${favourite.pizza} looses one $.</value>
+      </list>
+    </property>
+  </bean>
+
+</beans>

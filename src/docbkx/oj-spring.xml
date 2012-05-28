@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<book xmlns="http://docbook.org/ns/docbook" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://docbook.org/ns/docbook http://docbook.org/xml/5.0/xsd/docbook.xsd"
+  version="5.0" xml:lang="en">
+  <info>
+    <title>Oddjob Spring Docs</title>
+    <releaseinfo>1.2</releaseinfo>
+    <authorgroup>
+      <author>
+        <personname>
+          <firstname>Rob</firstname>
+          <surname>Gordon</surname>
+        </personname>
+      </author>
+    </authorgroup>
+    <copyright>
+      <year>2012</year>
+      <holder>Rob Gordon</holder>
+    </copyright>
+  </info>
+
+  <toc></toc>
+
+  <chapter>
+    <title>Introduction</title>
+
+    <para>This is a very Brief introduction to oj-spring which is
+      set of
+      Oddjob jobs for integrating with Spring.
+    </para>
+
+    <section>
+      <title>Requirements</title>
+
+      <para>Requires Oddjob 1.2
+      </para>
+
+    </section>
+  </chapter>
+
+  <chapter>
+    <title>The Jobs</title>
+
+    <section>
+      <title>spring:beans</title>
+
+      <para>
+        An Oddjob job that will load a Spring
+        <literal>ApplicationContext</literal>
+        and make
+        it's beans available to Oddjob. The Spring XML
+        configuration
+        may be specified either as files or class path
+        resources.
+      </para>
+
+      <para>
+        Beans within Spring may be accessed from other Oddjob components
+        using
+        the notation
+        <literal>${id-of-this/name-of-bean}</literal>
+        .
+      </para>
+
+      <para>
+        Oddjob beans are made available via a parent
+        <literal>BeanFactory</literal>
+        so can be accessed by a reference in
+        Spring.
+      </para>
+
+      <para>
+        Oddjobs beans and there properties and Oddjob properties can
+        also be
+        accessed in Spring using the
+        <literal>${id.property}</literal>
+        or
+        <literal>${any.property.name}</literal>
+        notation.
+      </para>
+
+      <para>
+        Note that the SpringApplication context will not be closed until
+        this
+        component is destroyed (i.e. because Oddjob is terminating)
+        or the
+        job is reset. If this is likely to keep resources active
+        longer than
+        desired then consider using a
+        <literal>SpringService</literal>
+        .
+      </para>
+
+    </section>
+
+    <section>
+      <title>spring:job</title>
+
+      <para>
+        An Oddjob Job that loads a Spring application context and runs
+        a single
+        <literal>Runnable</literal>
+        within that application context. The name
+        of the bean that is this
+        <literal>Runnable</literal>
+        must be provided.
+        The Spring XML
+        configuration may be specified either as files or class path resources.
+      </para>
+      <para>
+        Spring may access properties and references from Oddjob within
+        the configuration files but unlike
+        <literal>SpringBeans</literal>
+        and
+        <literal>SpringService</literal>
+        the Spring bean are not available outside
+        of this component because the application context is closed once
+        the job has executed.
+      </para>
+
+    </section>
+
+    <section>
+      <title>spring:service</title>
+
+      <para>An Oddjob job that provides a Spring application
+        context as a
+        service that can be started and stopped. The Spring XML
+        configuration may be specified either as files or class path
+        resources.
+      </para>
+      <para>
+        This component is almost identical to
+        <literal>SpringBeans</literal>
+        and access
+        to Oddjob properties and Spring beans is identical.
+        The only
+        difference
+        between the two is in the timing of the
+        closing of the application
+        context. This class closes the
+        application context on stop.
+      </para>
+
+    </section>
+  </chapter>
+</book>  

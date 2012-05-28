@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<oddjob>
+  <job>
+    <sequential>
+      <jobs>
+        <input>
+          <requests>
+            <input-text prompt="User" property="jdbc.username" />
+            <input-password prompt="Password" property="jdbc.password" />
+          </requests>
+        </input>
+        <spring:job beanName="myQuery" xmlns:spring="oddjob:spring">
+          <resources>
+            <list>
+              <values>
+                <value value="org/oddjob/spring/MyQuery.xml" />
+              </values>
+            </list>
+          </resources>
+        </spring:job>
+      </jobs>
+    </sequential>
+  </job>
+</oddjob>
