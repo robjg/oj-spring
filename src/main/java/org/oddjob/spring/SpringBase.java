@@ -31,7 +31,12 @@ implements ArooaSessionAware {
 
 	/** 
      * Spring XML configuration files.
-     * This property is not requied if resources are supplied.
+     * This property is not required if resources are supplied.
+     * <p>
+     * If the file is absolute it must be prefixed with 'file:'. For more
+     * information on this see 
+     * <a href="http://forum.springsource.org/archive/index.php/t-37155.html">A Spring Forum Post</a>
+     * on the subject.
 	 */
 	private String[] files;
 	
