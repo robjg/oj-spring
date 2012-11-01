@@ -36,5 +36,9 @@
       <directory>${project.build.directory}/site</directory>
       <outputDirectory>docs</outputDirectory>
     </fileSet>
+    <fileSet>
+      <directory>${project.basedir}/src/examples</directory>
+      <outputDirectory>examples</outputDirectory>
+    </fileSet>
   </fileSets>
 </assembly>
