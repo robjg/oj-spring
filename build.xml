@@ -316,7 +316,7 @@
 		<delete dir="${build.dir}"/>
 		<delete>
 			<fileset dir="${lib.dir}">
-			 <include name="${name}*.jar"/>
+			 <include name="*.jar"/>
 			</fileset>
 		</delete>
 	</target>

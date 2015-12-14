@@ -11,12 +11,13 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanNotOfRequiredTypeException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.core.ResolvableType;
 
 /**
  * Adapt a {@link BeanRegistry} from an {@link ArooaSession} provided by 
  * Oddjob to be a Spring {@link BeanFactory}.
  * 
- * This allows Spring to access components in from Oddjob.
+ * This allows Spring to access components from Oddjob.
  * 
  * @see OddjobApplicationContext
  *  
@@ -102,6 +103,18 @@ public class OddjobBeanFactory implements BeanFactory {
 				"Not exactly one bean found.");
 	}
 	
+	/**
+	 * This is calls {@link #getBean(Class)} as only an existing bean will be 
+	 * returned. The arguments for bean creation are ignored.
+	 * 
+	 * @param requiredType The required class.
+	 * @param args Ignored.
+	 */
+	@Override
+	public <T> T getBean(Class<T> requiredType, Object... args) throws BeansException {
+		return getBean(requiredType);
+	}
+
 	/**
 	 * Aliases are not supported.
 	 * 
@@ -244,6 +257,27 @@ public class OddjobBeanFactory implements BeanFactory {
 		Object bean = getBean(name);
 		
 		return targetType.isInstance(bean);
+	}
+
+	/**
+	 * Check the bean in Oddjob's {@link BeanRegistry} is of this
+	 * type. The check will not check to see if Oddjob could provide
+	 * a conversion to this type.
+	 * 
+	 * @param name The id of the bean in Oddjob.
+	 * @param typeToMatch The type to check the bean is of.
+	 * 
+	 * @return true if the bean is of the target type.
+	 * 
+	 * @throws NoSuchBeanDefinitionException if there is no bean with the given name
+	 * 
+	 * @see org.springframework.beans.factory.BeanFactory#isTypeMatch(String, ResolvableType)
+	 */
+	@Override
+	public boolean isTypeMatch(String name, ResolvableType typeToMatch) throws NoSuchBeanDefinitionException {
+		Object bean = getBean(name);
+		
+		return typeToMatch.isInstance(bean);
 	}
 
 }

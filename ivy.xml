@@ -12,10 +12,10 @@
 	    <dependency org="uk.co.rgordon" name="oddjob" rev="latest.integration"
 	    			conf="provided->default" />
 	    	
-		<dependency org="org.springframework" name="spring-context" rev="3.1.1.RELEASE"
+		<dependency org="org.springframework" name="spring-context" rev="4.2.3.RELEASE"
 			conf="default->default" />
 			
-		<dependency org="org.springframework" name="spring-orm" rev="3.1.1.RELEASE"
+		<dependency org="org.springframework" name="spring-orm" rev="4.2.3.RELEASE"
 			conf="default->default" />
 			
 	    <dependency org="uk.co.rgordon" name="oddjob" rev="latest.integration"
