@@ -4,7 +4,7 @@
 	<configurations>
         <conf name="default" visibility="public"></conf>
         <conf name="provided" visibility="public"></conf>
-        <conf name="test" visibility="public"></conf>
+        <conf name="test" extends="default,provided" visibility="public"></conf>
 	</configurations>  
         
 	<dependencies>
