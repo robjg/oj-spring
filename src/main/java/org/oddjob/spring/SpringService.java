@@ -1,10 +1,10 @@
 package org.oddjob.spring;
 
-import org.apache.log4j.Logger;
-import org.oddjob.FailedToStopException;
 import org.oddjob.arooa.registry.BeanDirectory;
 import org.oddjob.arooa.registry.BeanDirectoryOwner;
 import org.oddjob.framework.Service;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -26,7 +26,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class SpringService extends SpringBase
 implements Service, BeanDirectoryOwner {
 	
-	private static final Logger logger = Logger.getLogger(SpringService.class);
+	private static final Logger logger = LoggerFactory.getLogger(SpringService.class);
 	
 
 	/** The resultant ApplicationContext. */
@@ -34,7 +34,7 @@ implements Service, BeanDirectoryOwner {
 	
 	
 	@Override
-	public void start() throws Exception {
+	public void start() {
 		logger.info("Loading Application Context.");
 		
 		applicationContext = 
@@ -42,7 +42,7 @@ implements Service, BeanDirectoryOwner {
 	}
 	
 	@Override
-	public void stop() throws FailedToStopException {
+	public void stop() {
 		if (applicationContext != null) {
 			logger.info("Closing Application Context.");
 			applicationContext.close();

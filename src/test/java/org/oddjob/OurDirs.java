@@ -1,10 +1,12 @@
 package org.oddjob;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.IOException;
 
-import org.apache.log4j.Logger;
 
 /**
  * Used to work out relative directories, when running tests individually
@@ -16,7 +18,7 @@ import org.apache.log4j.Logger;
  * @author rob
  */
 public class OurDirs {
-	private static final Logger logger = Logger.getLogger(OurDirs.class);
+	private static final Logger logger = LoggerFactory.getLogger(OurDirs.class);
 
 	private final File base;
 	

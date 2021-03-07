@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<oddjob id="oddjob">
+    <job>
+        <folder>
+            <jobs>
+                <oddjob file="${oddjob.dir}/src/test/resources/examples/service/Service.oj.xml" name="Counting Service Example"/>
+                <oddjob file="${oddjob.dir}/src/test/resources/examples/simple/Simple.oj.xml" name="Counting Service Example"/>
+            </jobs>
+        </folder>
+    </job>
+</oddjob>

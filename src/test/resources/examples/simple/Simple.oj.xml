@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<oddjob id="this">
+    <job>
+        <sequential>
+            <jobs>
+                <spring:beans id="spring" xmlns:spring="oddjob:spring">
+                    <resources>
+                        <value value="classpath:/examples/simple/config/spring/Simple.xml"/>
+                    </resources>
+                </spring:beans>
+                <run job="${spring/hello}"/>
+            </jobs>
+        </sequential>
+    </job>
+</oddjob>

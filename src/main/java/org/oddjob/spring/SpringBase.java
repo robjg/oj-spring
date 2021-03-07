@@ -2,10 +2,11 @@ package org.oddjob.spring;
 
 import java.util.Arrays;
 
-import org.apache.log4j.Logger;
 import org.oddjob.arooa.ArooaSession;
 import org.oddjob.arooa.deploy.annotations.ArooaHidden;
 import org.oddjob.arooa.life.ArooaSessionAware;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -22,7 +23,7 @@ import org.springframework.core.io.DefaultResourceLoader;
 public class SpringBase 
 implements ArooaSessionAware {
 	
-	private static final Logger logger = Logger.getLogger(SpringBase.class);
+	private static final Logger logger = LoggerFactory.getLogger(SpringBase.class);
 	
 	/** 
      * The name of the component. Can be any text.

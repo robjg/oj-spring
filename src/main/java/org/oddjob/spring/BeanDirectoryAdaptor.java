@@ -19,7 +19,7 @@ import org.springframework.context.ApplicationContext;
  * Spring using the convention ${oddjob-spring-component/spring-bean}
  * to access a bean in spring.
  * 
- * @See SpringBeans
+ * @see  SpringBeans
  * 
  * @author rob
  *

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<oddjob id="this">
+    <job>
+        <sequential>
+            <jobs>
+                <jmx:server root="${spring-oddjob}" xmlns:jmx="http://rgordon.co.uk/oddjob/jmx"/>
+                <oddjob file="${this.dir}/simple/Simple.oj.xml" id="spring-oddjob"/>
+            </jobs>
+        </sequential>
+    </job>
+</oddjob>

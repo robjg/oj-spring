@@ -1,12 +1,13 @@
 package org.oddjob.spring;
 
-import org.apache.log4j.Logger;
 import org.oddjob.arooa.ArooaSession;
 import org.oddjob.arooa.convert.ArooaConversionException;
 import org.oddjob.arooa.runtime.ExpressionParser;
 import org.oddjob.arooa.runtime.ParsedExpression;
 import org.oddjob.arooa.runtime.RetainUnexpandedStrings;
 import org.oddjob.arooa.runtime.SubstituationPolicySession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanDefinitionStoreException;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -48,7 +49,7 @@ import org.springframework.util.StringValueResolver;
  */
 public class OddjobPropertyConfigurer implements BeanFactoryPostProcessor {
 	
-	private static final Logger logger = Logger.getLogger(
+	private static final Logger logger = LoggerFactory.getLogger(
 			OddjobPropertyConfigurer.class);
 	
 	/** The Oddjob session used to resolve property values. */
@@ -73,14 +74,13 @@ public class OddjobPropertyConfigurer implements BeanFactoryPostProcessor {
 				valueResolver);
 		
 		String[] beanNames = beanFactoryToProcess.getBeanDefinitionNames();
-		for (int i = 0; i < beanNames.length; i++) {
+		for (String beanName : beanNames) {
 
-			BeanDefinition bd = beanFactoryToProcess.getBeanDefinition(beanNames[i]);
+			BeanDefinition bd = beanFactoryToProcess.getBeanDefinition(beanName);
 			try {
 				visitor.visitBeanDefinition(bd);
-			}
-			catch (BeanDefinitionStoreException ex) {
-				throw new BeanDefinitionStoreException(bd.getResourceDescription(), beanNames[i], ex.getMessage());
+			} catch (BeanDefinitionStoreException ex) {
+				throw new BeanDefinitionStoreException(bd.getResourceDescription(), beanName, ex.getMessage());
 			}
 		}
 		

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<oddjob id="this">
+    <job>
+        <sequential>
+            <jobs>
+                <properties>
+                    <values>
+                        <value key="count.from" value="2"/>
+                    </values>
+                </properties>
+                <spring:service id="spring" xmlns:spring="oddjob:spring">
+                    <resources>
+                        <value value="classpath:/examples/service/config/spring/CountingService.xml"/>
+                    </resources>
+                </spring:service>
+                <echo id="echo"><![CDATA[Count is ${spring/counting-service.count}]]></echo>
+            </jobs>
+        </sequential>
+    </job>
+</oddjob>

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<oddjob id="oddjob">
+    <job>
+        <explorer id="explorer" dir="${oddjob.dir}" file="${oddjob.dir}/examples.xml"/>
+    </job>
+</oddjob>

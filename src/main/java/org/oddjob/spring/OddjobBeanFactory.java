@@ -11,6 +11,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanNotOfRequiredTypeException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.core.ResolvableType;
 
 /**
@@ -185,7 +186,7 @@ public class OddjobBeanFactory implements BeanFactory {
 	/**
 	 * Get the type of the bean in Oddjob's {@link BeanRegistry}.
 	 * 
-	 * @param The id of the bean in Oddjob.
+	 * @param name The id of the bean in Oddjob.
 	 * 
 	 * @return The type.
 	 * 
@@ -195,6 +196,11 @@ public class OddjobBeanFactory implements BeanFactory {
 	public Class<?> getType(String name) throws NoSuchBeanDefinitionException {
 		Object bean = getBean(name);
 		return bean.getClass();
+	}
+
+	@Override
+	public Class<?> getType(String name, boolean allowFactoryBeanInit) throws NoSuchBeanDefinitionException {
+		return getType(name);
 	}
 
 	/**
@@ -278,6 +284,16 @@ public class OddjobBeanFactory implements BeanFactory {
 		Object bean = getBean(name);
 		
 		return typeToMatch.isInstance(bean);
+	}
+
+	@Override
+	public <T> ObjectProvider<T> getBeanProvider(Class<T> requiredType) {
+		return null;
+	}
+
+	@Override
+	public <T> ObjectProvider<T> getBeanProvider(ResolvableType requiredType) {
+		return null;
 	}
 
 }

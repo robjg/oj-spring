@@ -1,11 +1,12 @@
 package org.oddjob.spring;
 
-import org.apache.log4j.Logger;
 import org.oddjob.arooa.life.Destroy;
 import org.oddjob.arooa.registry.BeanDirectory;
 import org.oddjob.arooa.registry.BeanDirectoryOwner;
-import org.oddjob.framework.HardReset;
-import org.oddjob.framework.SoftReset;
+import org.oddjob.framework.adapt.HardReset;
+import org.oddjob.framework.adapt.SoftReset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -35,7 +36,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 public class SpringBeans extends SpringBase
 implements Runnable, BeanDirectoryOwner {
 	
-	private static final Logger logger = Logger.getLogger(SpringBeans.class);
+	private static final Logger logger = LoggerFactory.getLogger(SpringBeans.class);
 	
 
 	/** The resultant ApplicationContext. */
